@@ -1,3 +1,6 @@
 [submodule "STM8S-SDCC-SPL"]
 	path = STM8S-SDCC-SPL
 	url = https://github.com/ulikoehler/STM8S-SDCC-SPL.git
+[submodule "PetitModbus"]
+	path = PetitModbus
+	url = https://github.com/FxDev/PetitModbus.git
