@@ -1,0 +1,37 @@
+diff --git a/PetitModbus.h b/PetitModbus.h
+index 0441ead..0a333e3 100644
+--- a/PetitModbus.h
++++ b/PetitModbus.h
+@@ -11,7 +11,7 @@
+ #ifndef __PETITMODBUS__H
+ #define __PETITMODBUS__H
+ 
+-#define NUMBER_OF_OUTPUT_PETITREGISTERS                 10                      // Petit Modbus RTU Slave Output Register Number
++#define NUMBER_OF_OUTPUT_PETITREGISTERS                 13                      // Petit Modbus RTU Slave Output Register Number
+                                                                                 // Have to put a number of registers here
+                                                                                 // It has to be bigger than 0 (zero)!!
+ #define PETITMODBUS_TIMEOUTTIMER                        250                     // Timeout Constant for Petit Modbus RTU Slave [millisecond]
+diff --git a/PetitModbusPort.c b/PetitModbusPort.c
+index b23823c..2ecef3a 100644
+--- a/PetitModbusPort.c
++++ b/PetitModbusPort.c
+@@ -25,10 +25,17 @@ void PetitModBus_TIMER_Initialise(void)
+ // This is used for send one character
+ void PetitModBus_UART_Putch(unsigned char c)
+ {
+-	while(!TRMT);
+-	TXREG = c;
++//	while(!TRMT);
++//	TXREG = c;
++        // Wait until the TX register is Empty.
++        while (!UART1_GetFlagStatus(UART1_FLAG_TXE));
++        // Then, write the byte to the data register.
++        UART1_SendData8(c);
++        // UART1_SendBreak();
++        while (UART1_GetFlagStatus(UART1_FLAG_TXE) == RESET);
+ }
+ 
++
+ // This is used for send string, better to use DMA for it ;)
+ unsigned char PetitModBus_UART_String(unsigned char *s, unsigned int Length)
+ {
