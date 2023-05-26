@@ -4,3 +4,4 @@
 [submodule "PetitModbus"]
 	path = PetitModbus
 	url = https://github.com/FxDev/PetitModbus.git
+	ignore = dirty
