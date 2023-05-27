@@ -121,8 +121,10 @@ void main(void)
 				else
 					PetitRegisters[i + 4].ActValue = 0;
 			}
-			else
+			else {
 				GPIO_WriteHigh(relayPorts[i], relayPins[i]); // relay off
+				PetitRegisters[i + 4].ActValue = 0; // clear timer
+			}
 		}
 		if (PetitRegisters[12].ActValue && PetitRegisters[12].ActValue != 0 && PetitRegisters[12].ActValue != 255 && PetitRegisters[12].ActValue != mbAddr) {			
 			FLASH_ProgramByte(0x4001, PetitRegisters[12].ActValue);
