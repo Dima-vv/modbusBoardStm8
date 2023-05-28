@@ -8,7 +8,7 @@ firmware for modbus relay board on stm8s103f3p6 from aliexpress like this
 <img src="https://user-images.githubusercontent.com/54972378/241314984-3c989ff9-a669-4bab-ac4f-f279179654cc.jpg" width="25%">
 
 ## Usage
-This firmwere doesn't use write/read coils (commands 0x01, 0x02, 0x05). Instead it uses reading/writing to holding registers (comands 0x03, 0x10).  
+This firmware doesn't use write/read coils (commands 0x01, 0x02, 0x05). Instead it uses reading/writing to holding registers (comands 0x03, 0x10).  
 One feature is swich relay ON temporary (1-32767 seconds. about 9 hours). То use this you have to write to corresponding register (1-4) value, equal time * 2 + 1. So value 21 means 10 seconds, 11 - 5 sec.  
 Changing port speed is not suported yet
 
