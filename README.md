@@ -49,12 +49,18 @@ Data type.............: 16-bit register, output (holding) register table
 
 -- Polling slave...
 [9]: 1
-
+```
+```
+# change mb address
+# write new ddress value (33) to 13 register
+modpoll -1  -m rtu -a 2 -b 9600 -p none -r 13 -t 4  /dev/ttyUSB0 33
 ```
 
 ## Build
 
-SDCC required
+[SDCC](https://sdcc.sourceforge.net/) required. Version 4.2 works fine
+
+
 ```
 git submodule update --init
 git apply --directory=PetitModbus/ PetitMB.patch
